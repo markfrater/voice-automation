@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NZ/AU Voice Partner Acquisition</title>
+<style>
+body{font-family:Arial,sans-serif;margin:30px;background:#f6f6f6;color:#222}
+.cards{display:flex;gap:15px;margin-bottom:25px}
+.card{background:white;padding:20px;border-radius:8px;min-width:150px}
+table{width:100%;background:white;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}
+a{color:#0645ad}
+.hot{font-weight:bold}
+</style>
+</head>
+<body>
+<h1>NZ/AU Voice Partner Acquisition</h1>
+<div class="cards">
+<div class="card"><b>{{ companies }}</b><br>Companies</div>
+<div class="card"><b>{{ contacts }}</b><br>Contacts</div>
+<div class="card"><b>{{ qualified }}</b><br>Qualified</div>
+</div>
+<p><a href="/leads">View all leads</a></p>
+<table>
+<tr><th>Company</th><th>Person</th><th>Title</th><th>Score</th><th>Email</th></tr>
+{% for lead in leads %}
+<tr>
+<td>{{ lead.company.name if lead.company else "" }}</td>
+<td>{{ (lead.first_name or "") }} {{ (lead.last_name or "") }}</td>
+<td>{{ lead.job_title or "" }}</td>
+<td class="{% if lead.contact_score >= 80 %}hot{% endif %}">{{ lead.contact_score }}</td>
+<td>{{ lead.email or "" }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

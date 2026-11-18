@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Leads</title>
+<style>
+body{font-family:Arial,sans-serif;margin:30px;background:#f6f6f6}
+table{width:100%;background:white;border-collapse:collapse}
+th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}
+</style>
+</head>
+<body>
+<h1>Lead Queue</h1>
+<p><a href="/">Dashboard</a></p>
+<table>
+<tr><th>Company</th><th>Name</th><th>Title</th><th>Email</th><th>Score</th><th>Status</th></tr>
+{% for lead in leads %}
+<tr>
+<td>{{ lead.company.name if lead.company else "" }}</td>
+<td>{{ (lead.first_name or "") }} {{ (lead.last_name or "") }}</td>
+<td>{{ lead.job_title or "" }}</td>
+<td>{{ lead.email or "" }}</td>
+<td>{{ lead.contact_score }}</td>
+<td>{{ lead.email_status or "" }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
